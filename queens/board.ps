@@ -1,0 +1,91 @@
+%! PS-Adobe-1.0
+%%Creator: Daan van Berkel (daan.v.berkel.1980@gmail.com)
+%%Advanced Problem Solving: Constraint Satisfaction Problems
+%%Title: N-Queens
+%%Pages: 1
+%%EndComments
+
+%%BeginProlog
+
+/pagewidth 210 def
+/pageheight 297 def
+
+/initialize {
+    75 25.1 div dup scale
+    pagewidth 2 div pageheight 2 div translate
+} def
+
+/settings 0 dict def
+settings begin
+    /whitefill 9 10 div def
+    /blackfill 1 10 div def
+end
+
+/square {
+    [/width /y /x] dup length 0 add dict begin {exch def} forall
+	x y moveto
+	width 0 rlineto
+	0 width rlineto
+	width neg 0 rlineto
+	closepath
+    end
+} def
+
+/whitesquare {
+    settings begin
+	square
+	gsave
+	    whitefill setgray
+	    fill
+	grestore
+	stroke
+    end
+} def
+
+/blacksquare {
+    settings begin
+	square
+	gsave
+	    blackfill setgray
+	    fill
+	grestore
+	stroke
+    end
+} def
+
+/board {
+    [/n /width /y /x] dup length 3 add dict begin {exch def} forall
+	/squarewidth width n div def
+	0 1 n 1 sub {
+	    /j exch def
+	    0 1 n 1 sub {
+		/i exch def
+		x i squarewidth mul add y j squarewidth mul add squarewidth
+		i j add 2 mod 0 eq {
+		    blacksquare
+		} {
+		    whitesquare
+		} ifelse
+	    } for
+	} for
+    end
+} def
+
+%%EndProlog
+%%Page: 1 1
+
+save /cleanslate exch def
+
+initialize
+
+/boardwidth pagewidth 2 div def
+
+boardwidth 2 div neg dup boardwidth 4 board
+
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Trailer
+%%EOF
