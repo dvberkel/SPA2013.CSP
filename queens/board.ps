@@ -17,8 +17,10 @@
 
 /settings 0 dict def
 settings begin
-    /whitefill 9 10 div def
-    /blackfill 1 10 div def
+    /whitesquarefill 9 10 div def
+    /blacksquarefill 1 10 div def
+    /whitequeenfill 10 10 div def
+    /blackqueenfill 0 10 div def
 end
 
 /square {
@@ -35,7 +37,7 @@ end
     settings begin
 	square
 	gsave
-	    whitefill setgray
+	    whitesquarefill setgray
 	    fill
 	grestore
 	stroke
@@ -46,7 +48,7 @@ end
     settings begin
 	square
 	gsave
-	    blackfill setgray
+	    blacksquarefill setgray
 	    fill
 	grestore
 	stroke
@@ -71,6 +73,73 @@ end
     end
 } def
 
+/queen {
+    [/width /y /x] dup length 1 add dict begin {exch def} forall
+	/unit width 22 div def
+	x y moveto
+	4 unit mul 2 unit mul rmoveto
+	14 unit mul 0 rlineto
+	2 unit mul neg 3 unit mul rlineto
+	0 5 unit mul rlineto
+	4 unit mul 8 unit mul rlineto
+	6 unit mul neg 6 unit mul neg rlineto
+	2 unit mul 7 unit mul rlineto
+	4 unit mul neg 5 unit mul neg rlineto
+	1 unit mul neg 6 unit mul rlineto
+	1 unit mul neg 6 unit mul neg rlineto
+	4 unit mul neg 5 unit mul rlineto
+	2 unit mul 7 unit mul neg rlineto
+	6 unit mul neg 6 unit mul rlineto
+	4 unit mul 8 unit mul neg rlineto
+	0 5 unit mul neg rlineto
+	2 unit mul neg 3 unit mul neg rlineto
+	closepath
+    end
+} def
+
+/whitequeen {
+    settings begin
+	queen
+	gsave
+	    whitequeenfill setgray
+	    fill
+	grestore
+	currentlinejoin
+	2 setlinejoin
+	stroke
+	setlinejoin
+    end
+} def
+
+/blackqueen {
+    settings begin
+	queen
+	gsave
+	    blackqueenfill setgray
+	    fill
+	grestore
+	currentlinejoin
+	2 setlinejoin
+	stroke
+	setlinejoin
+    end
+} def
+
+/configuration {
+    [/boardwidth /n] dup length 4 add dict begin {exch def} forall
+	/squarewidth boardwidth n div def
+	/x boardwidth 2 div neg def
+	/y x squarewidth sub def
+
+	x y boardwidth n board
+
+	0 1 n 1 sub {
+	    /i exch def
+	    x i squarewidth mul add y n 1 add squarewidth mul add squarewidth blackqueen
+	} for
+    end
+} def
+
 %%EndProlog
 %%Page: 4x4 1
 
@@ -78,9 +147,7 @@ save /cleanslate exch def
 
 initialize
 
-/boardwidth pagewidth 2 div def
-
-boardwidth 2 div neg dup boardwidth 4 board
+4 pagewidth 2 div configuration
 
 showpage
 
@@ -93,9 +160,7 @@ save /cleanslate exch def
 
 initialize
 
-/boardwidth pagewidth 2 div def
-
-boardwidth 2 div neg dup boardwidth 5 board
+5 pagewidth 2 div configuration
 
 showpage
 
@@ -108,9 +173,7 @@ save /cleanslate exch def
 
 initialize
 
-/boardwidth pagewidth 2 div def
-
-boardwidth 2 div neg dup boardwidth 6 board
+6 pagewidth 2 div configuration
 
 showpage
 
@@ -123,9 +186,7 @@ save /cleanslate exch def
 
 initialize
 
-/boardwidth pagewidth 2 div def
-
-boardwidth 2 div neg dup boardwidth 7 board
+7 pagewidth 2 div configuration
 
 showpage
 
@@ -138,9 +199,7 @@ save /cleanslate exch def
 
 initialize
 
-/boardwidth pagewidth 2 div def
-
-boardwidth 2 div neg dup boardwidth 8 board
+8 pagewidth 2 div configuration
 
 showpage
 
