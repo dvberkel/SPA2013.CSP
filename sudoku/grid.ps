@@ -1,0 +1,82 @@
+%! PS-Adobe-1.0
+%%Creator: Daan van Berkel (daan.v.berkel.1980@gmail.com)
+%%Advanced Problem Solving: Constraint Satisfaction Problems
+%%Title: Sudoku
+%%Pages: 1
+%%EndComments
+
+%%BeginProlog
+
+/pagewidth 210 def
+/pageheight 297 def
+
+/initialize {
+    75 25.1 div dup scale
+    pagewidth 2 div pageheight 2 div translate
+} def
+
+/settings 0 dict def
+settings begin
+    /withthinline {1 2 div setlinewidth} def
+    /withthickline {2 setlinewidth} def
+end
+
+/rectangle {
+    [/height /width /y /x] dup length 0 add dict begin {exch def} forall
+	x y moveto
+	width 0 rlineto
+	0 height rlineto
+	width neg 0 rlineto
+	closepath
+    end
+} def
+
+/square {
+    dup rectangle
+} def
+
+/board {
+    [/n /width /y /x] dup length 3 add dict begin {exch def} forall
+	/squarewidth width n div def
+	0 1 n 1 sub {
+	    /j exch def
+	    0 1 n 1 sub {
+		/i exch def
+		x i squarewidth mul add y j squarewidth mul add squarewidth square
+	    } for
+	} for
+	settings begin
+	    withthinline stroke
+	end
+    end
+} def
+
+
+
+
+/configuration {
+    [/boardwidth /n] dup length 3 add dict begin {exch def} forall
+	/x boardwidth 2 div neg def
+	/y x def
+
+	x y boardwidth n board
+    end
+} def
+
+%%EndProlog
+%%Page: 4x4 1
+
+save /cleanslate exch def
+
+initialize
+
+9 pagewidth 2 3 div mul configuration
+
+
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Trailer
+%%EOF
