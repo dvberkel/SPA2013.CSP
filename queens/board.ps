@@ -125,17 +125,32 @@ end
     end
 } def
 
+/max {
+    [/values] dup length 2 add dict begin {exch def} forall
+	/candidate values 0 get def
+	values {
+	    /value exch def
+	    value candidate gt {
+		/candidate value def
+	    } if
+	} forall
+	candidate
+    end
+} def
+
 /configuration {
-    [/boardwidth /n] dup length 4 add dict begin {exch def} forall
+    [/boardwidth /pieces] dup length 5 add dict begin {exch def} forall
+	/n pieces length def
 	/squarewidth boardwidth n div def
 	/x boardwidth 2 div neg def
-	/y x squarewidth sub def
+	/d [ pieces max 1 add pieces length sub 0 ] max 2 div def
+	/y x d squarewidth mul sub def
 
 	x y boardwidth n board
 
 	0 1 n 1 sub {
 	    /i exch def
-	    x i squarewidth mul add y n 1 add squarewidth mul add squarewidth blackqueen
+	    x i squarewidth mul add y pieces i get squarewidth mul add squarewidth blackqueen
 	} for
     end
 } def
@@ -147,7 +162,7 @@ save /cleanslate exch def
 
 initialize
 
-4 pagewidth 2 div configuration
+[5 5 5 5] pagewidth 2 div configuration
 
 showpage
 
@@ -160,7 +175,7 @@ save /cleanslate exch def
 
 initialize
 
-5 pagewidth 2 div configuration
+[6 6 6 6 6] pagewidth 2 div configuration
 
 showpage
 
@@ -173,7 +188,7 @@ save /cleanslate exch def
 
 initialize
 
-6 pagewidth 2 div configuration
+[7 7 7 7 7 7] pagewidth 2 div configuration
 
 showpage
 
@@ -186,7 +201,7 @@ save /cleanslate exch def
 
 initialize
 
-7 pagewidth 2 div configuration
+[8 8 8 8 8 8 8] pagewidth 2 div configuration
 
 showpage
 
@@ -199,7 +214,7 @@ save /cleanslate exch def
 
 initialize
 
-8 pagewidth 2 div configuration
+[9 9 9 9 9 9 9 9 9] pagewidth 2 div configuration
 
 showpage
 
