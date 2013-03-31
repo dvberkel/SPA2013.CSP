@@ -2,7 +2,7 @@
 %%Creator: Daan van Berkel (daan.v.berkel.1980@gmail.com)
 %%Advanced Problem Solving: Constraint Satisfaction Problems
 %%Title: Sudoku
-%%Pages: 1
+%%Pages: 3
 %%EndComments
 
 %%BeginProlog
@@ -35,9 +35,12 @@ end
     dup rectangle
 } def
 
-/board {
-    [/n /width /y /x] dup length 3 add dict begin {exch def} forall
-	/squarewidth width n div def
+/isqrt {
+    [0 1 0 2 0 0 0 0 3] exch get
+} def
+
+/grid {
+    [/n /squarewidth /y /x] dup length 3 add dict begin {exch def} forall
 	0 1 n 1 sub {
 	    /j exch def
 	    0 1 n 1 sub {
@@ -45,14 +48,23 @@ end
 		x i squarewidth mul add y j squarewidth mul add squarewidth square
 	    } for
 	} for
-	settings begin
-	    withthinline stroke
-	end
     end
 } def
 
-
-
+/board {
+    [/n /width /y /x] dup length 2 add dict begin {exch def} forall
+	/squarewidth width n div def
+	x y squarewidth n grid
+	settings begin
+	    withthinline stroke
+	end
+	/bands n sqrt cvi def
+	x y bands squarewidth mul bands grid
+	settings begin
+	    withthickline stroke
+	end
+    end
+} def
 
 /configuration {
     [/boardwidth /n] dup length 3 add dict begin {exch def} forall
@@ -70,8 +82,33 @@ save /cleanslate exch def
 
 initialize
 
+4 pagewidth 2 3 div mul configuration
+
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Page: 9x9 2
+
+save /cleanslate exch def
+
+initialize
+
 9 pagewidth 2 3 div mul configuration
 
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Page: 16x16 3
+
+save /cleanslate exch def
+
+initialize
+
+16 pagewidth 2 3 div mul configuration
 
 showpage
 
