@@ -35,10 +35,6 @@ end
     dup rectangle
 } def
 
-/isqrt {
-    [0 1 0 2 0 0 0 0 3] exch get
-} def
-
 /grid {
     [/n /squarewidth /y /x] dup length 3 add dict begin {exch def} forall
 	0 1 n 1 sub {
@@ -66,12 +62,50 @@ end
     end
 } def
 
+/showsymbol {
+    [/symbol /y /x] dup length 6 add dict begin {exch def} forall
+	gsave
+	    0 0 moveto
+	    symbol true charpath
+	    pathbbox
+	    [/ury /urx /lly /llx] {exch def} forall
+	grestore
+	/dx symbol stringwidth pop 2 div neg def
+	/dy ury lly sub 2 div neg def
+	x dx add y dy add moveto
+	symbol show
+    end
+} def
+
+/symbolboard {
+    [/symbols /boardwidth /y /x] dup length 4 add dict begin {exch def} forall
+	/n symbols length def
+	/squarewidth boardwidth n div def
+	/x x squarewidth 2 div add def
+	/y y boardwidth add squarewidth 2 div sub def
+
+	/Monaco findfont 30 scalefont setfont
+	/Monaco findfont squarewidth scalefont setfont
+	
+	0 1 n 1 sub {
+	    /j exch def
+	    0 1 n 1 sub {
+		/i exch def
+		x i squarewidth mul add y j squarewidth mul sub symbols j get i get showsymbol
+	    } for
+	} for
+    end
+} def
+
 /configuration {
-    [/boardwidth /n] dup length 3 add dict begin {exch def} forall
+    [/boardwidth /symbols] dup length 6 add dict begin {exch def} forall
+
+	/n symbols length def
 	/x boardwidth 2 div neg def
 	/y x def
 
 	x y boardwidth n board
+	x y boardwidth symbols symbolboard
     end
 } def
 
@@ -82,7 +116,12 @@ save /cleanslate exch def
 
 initialize
 
-4 pagewidth 2 3 div mul configuration
+[
+    [(0) (2) (3) (4)]
+    [(1) (2) (3) (4)]
+    [(2) (2) (3) (4)]
+    [(3) (2) (3) (4)]
+] pagewidth 2 3 div mul configuration
 
 showpage
 
@@ -95,7 +134,17 @@ save /cleanslate exch def
 
 initialize
 
-9 pagewidth 2 3 div mul configuration
+[
+    [(1) (2) (3) (4) (5) (6) (7) (8) (9)]
+    [(1) (2) (3) (4) (5) (6) (7) (8) (9)]
+    [(1) (2) (3) (4) (5) (6) (7) (8) (9)]
+    [(1) (2) (3) (4) (5) (6) (7) (8) (9)]
+    [(1) (2) (3) (4) (5) (6) (7) (8) (9)]
+    [(1) (2) (3) (4) (5) (6) (7) (8) (9)]
+    [(1) (2) (3) (4) (5) (6) (7) (8) (9)]
+    [(1) (2) (3) (4) (5) (6) (7) (8) (9)]
+    [(1) (2) (3) (4) (5) (6) (7) (8) (9)]
+] pagewidth 2 3 div mul configuration
 
 showpage
 
@@ -108,7 +157,24 @@ save /cleanslate exch def
 
 initialize
 
-16 pagewidth 2 3 div mul configuration
+[
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+    [(0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (A) (B) (C) (D) (E) (F)]
+] pagewidth 2 3 div mul configuration
 
 showpage
 
