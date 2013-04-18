@@ -1,0 +1,21 @@
+{
+  "name": "SPA2013.CSP",
+  "version": "0.0.0",
+  "description": "SPA 2013 Advanced Problem Solving: Constraint Satisfaction Problems",
+  "scripts": {
+    "test": "./node_modules/.bin/cucumber.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dvberkel/SPA2013.CSP.git"
+  },
+  "keywords": [
+    "CSP"
+  ],
+  "author": "dvberkel",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "cucumber": "~0.3.0"
+  }
+}
