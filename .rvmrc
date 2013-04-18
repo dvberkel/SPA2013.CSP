@@ -1,28 +1,3 @@
-SPA 2013 Advanced Problem Solving: Constraint Satisfaction Problems
-===================================================================
-
-This repository accompanies a [SPA 2013][spa2013] session 
-"Advanced Problem Solving: Constraint Satisfaction Problems"
-
-Want to know where I am working on? Check out the
-[trello board][trello].
-
-Features
---------
-
-This repository exposes a [cucumber][] feature that enables a
-developer to test drive a Constraint Satisfaction Problem solver.
-
-Checkout a branch for your favourite language and get started.
-
-Ruby
-----
-
-This branch provides a Ruby based setup to test drive a CSP
-solver. We use [rvm][] to manage our ruby versions and gemsets. There
-is a `.rvmrc` with the following content in the directory.
-
-```ruby
 #!/usr/bin/env bash
 
 # This is an RVM Project .rvmrc file, used to automatically load the ruby
@@ -57,28 +32,3 @@ else
     return 1
   }
 fi
-```
-
-We use [bundler][] to manage our dependencies. bundler is best
-installed with [gem][] via
-
-    gem install bundler
-
-Afterwards the project dependencies can be installed by
-
-    bundle install
-
-Now [cucumber][] can be run with
-
-    bundle exec cucumber
-
-or just plain
-
-    cucumber
-
-[spa2013]: www.spaconference.org/spa2013/ "SPA 2013 homepage"
-[trello]: https://trello.com/board/spa2013-csp/51475c3523c6c70e3c001f03
-[cucumber]: http://cukes.info/ "Cucumber homepage"
-[rvm]: https://rvm.io/
-[bundler]: http://gembundler.com/
-[gem]: http://rubygems.org/
