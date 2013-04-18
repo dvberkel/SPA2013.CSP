@@ -15,6 +15,25 @@ developer to test drive a Constraint Satisfaction Problem solver.
 
 Checkout a branch for your favourite language and get started.
 
+Java
+----
+
+This branch provides a Java based setup to test drive a CSP solver. We
+use [maven][] to automate various tasks.
+
+    mvn eclipse:eclipse
+
+will create projects files which can be imported into Eclipse.
+
+[cucumber-jvm][] is a port from cucumber used to run the features. Run
+the test inside your integrated development environment to get started.
+
+### TODO
+
+* [maven][] to execute the feature.
+
 [spa2013]: www.spaconference.org/spa2013/ "SPA 2013 homepage"
 [trello]: https://trello.com/board/spa2013-csp/51475c3523c6c70e3c001f03
 [cucumber]: http://cukes.info/ "Cucumber homepage"
+[maven]: http://maven.apache.org/
+[cucumber-jvm]: https://github.com/cucumber/cucumber-jvm
