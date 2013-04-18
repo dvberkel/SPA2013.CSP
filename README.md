@@ -28,10 +28,6 @@ will create projects files which can be imported into Eclipse.
 [cucumber-jvm][] is a port from cucumber used to run the features. Run
 the test inside your integrated development environment to get started.
 
-### TODO
-
-* [maven][] to execute the feature.
-
 [spa2013]: www.spaconference.org/spa2013/ "SPA 2013 homepage"
 [trello]: https://trello.com/board/spa2013-csp/51475c3523c6c70e3c001f03
 [cucumber]: http://cukes.info/ "Cucumber homepage"
