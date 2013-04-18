@@ -34,3 +34,4 @@ afterwards you can run [lettuce][] with
 [trello]: https://trello.com/board/spa2013-csp/51475c3523c6c70e3c001f03
 [cucumber]: http://cukes.info/ "Cucumber homepage"
 [pip]: http://www.pip-installer.org/en/latest/
+[lettuce]: http://lettuce.it/
