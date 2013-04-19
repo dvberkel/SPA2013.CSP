@@ -2,7 +2,7 @@
 %%Creator: Daan van Berkel (daan.v.berkel.1980@gmail.com)
 %%Advanced Problem Solving: Constraint Satisfaction Problems
 %%Title: Vertex Coloring
-%%Pages: 1
+%%Pages: 4
 %%EndComments
 
 %%BeginProlog
@@ -74,6 +74,29 @@ end
     end
 } def
 
+/K {
+    [/unit /n] dup length 0 add dict begin {exch def} forall
+	/baseangle 360 n div def
+	[
+	    0 1 n 1 sub {
+		/i exch def
+		[
+		    0 1 n 1 sub {
+			/j exch def
+			i j ne
+		    } for
+		]
+	    } for
+	]
+	[
+	    0 1 n 1 sub {
+		baseangle mul /angle exch def
+		[unit angle cos mul unit angle sin mul]
+	    } for
+	] graph
+    end
+} def
+
 %%EndProlog
 %%Page: K3 1
 
@@ -81,12 +104,54 @@ save /cleanslate exch def
 
 initialize
 
-[
-    [false true true]
-    [true false true]
-    [true true false]
-]
-[[0 0] [40 0] [0 30]] graph
+/unit pagewidth 2 div 2 3 div mul def
+
+3 unit K
+
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Page: K4 2
+
+save /cleanslate exch def
+
+initialize
+
+/unit pagewidth 2 div 2 3 div mul def
+
+4 unit K
+
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Page: K5 3
+
+save /cleanslate exch def
+
+initialize
+
+/unit pagewidth 2 div 2 3 div mul def
+
+5 unit K
+
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Page: K6 4
+
+save /cleanslate exch def
+
+initialize
+
+/unit pagewidth 2 div 2 3 div mul def
+
+6 unit K
 
 showpage
 
