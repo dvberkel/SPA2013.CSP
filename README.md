@@ -24,7 +24,7 @@ solver. We use [pip][] to manage our dependencies.
 We use a python port of [cucumber][] named [lettuce][] to verify our
 features. You can install it via
 
-    pip install lettuce
+    [sudo] pip install lettuce
 
 afterwards you can run [lettuce][] with
 
