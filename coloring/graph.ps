@@ -1,0 +1,97 @@
+%! PS-Adobe-1.0
+%%Creator: Daan van Berkel (daan.v.berkel.1980@gmail.com)
+%%Advanced Problem Solving: Constraint Satisfaction Problems
+%%Title: Vertex Coloring
+%%Pages: 1
+%%EndComments
+
+%%BeginProlog
+
+/pagewidth 210 def
+/pageheight 297 def
+
+/initialize {
+    75 25.1 div dup scale
+    pagewidth 2 div pageheight 2 div translate
+} def
+
+/settings 0 dict def
+settings begin
+    /radius 5 def
+    /vertexfill 8 10 div def
+    /vertexstroke 0 10 div def
+    /edgestroke 2 10 div def
+end
+
+/vertex {
+    settings begin
+	aload pop radius 0 360 arc
+	gsave
+	    vertexfill setgray
+	    fill
+	grestore
+	vertexstroke setgray
+	stroke
+    end	
+} def
+
+/vertices {
+    {
+	vertex
+    } forall
+} def
+
+/edge {
+    settings begin
+	aload pop moveto
+	aload pop lineto
+	edgestroke setgray
+	stroke
+    end
+} def
+
+/edges {
+    [/coordinates /incidences] dup length 3 add dict begin {exch def} forall
+	/n coordinates length def
+	0 1 n 1 sub {
+	    /uindex exch def
+	    0 1 n 1 sub {
+		/vindex exch def
+		incidences uindex get vindex get {
+		    coordinates uindex get
+		    coordinates vindex get
+		    edge
+		} if
+	    } for
+	} for
+    end
+} def
+
+/graph {
+    [/coordinates /incidences] dup length 0 add dict begin {exch def} forall
+	incidences coordinates edges
+	coordinates vertices
+    end
+} def
+
+%%EndProlog
+%%Page: K3 1
+
+save /cleanslate exch def
+
+initialize
+
+[
+    [false true true]
+    [true false true]
+    [true true false]
+]
+[[0 0] [40 0] [0 30]] graph
+
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Trailer
+%%EOF
