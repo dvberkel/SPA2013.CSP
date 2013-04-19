@@ -1,0 +1,12 @@
+[submodule "deck"]
+	path = deck
+	url = https://github.com/imakewebthings/deck.js.git
+[submodule "codemirror"]
+	path = codemirror
+	url = https://github.com/iros/deck.js-codemirror.git
+[submodule "toc"]
+	path = toc
+	url = https://github.com/jgallen23/toc.git
+[submodule "deck.annotate.js"]
+	path = deck.annotate.js
+	url = git://github.com/nemec/deck.annotate.js.git
