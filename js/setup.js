@@ -18,6 +18,6 @@
 	    }
 	}).decktoc();
 
-	$(".gallery").gallery({});
+	$(".gallery").gallery({ duration: 8000 });
     })
 })(jQuery);
