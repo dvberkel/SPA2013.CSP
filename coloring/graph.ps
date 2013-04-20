@@ -2,7 +2,7 @@
 %%Creator: Daan van Berkel (daan.v.berkel.1980@gmail.com)
 %%Advanced Problem Solving: Constraint Satisfaction Problems
 %%Title: Vertex Coloring
-%%Pages: 5
+%%Pages: 7
 %%EndComments
 
 %%BeginProlog
@@ -166,7 +166,7 @@ initialize
 
 /unit pagewidth 2 div 2 3 div mul def
 /n 5 def
-/baseangle 360 5 div def
+/baseangle 360 n div def
 
 [
     [false true false false true true false false false false]
@@ -187,6 +187,85 @@ initialize
 	[unit angle cos mul unit angle sin mul]
     } for
     /unit unit 1 2 div mul def
+    0 1 n 1 sub {
+	baseangle mul /angle exch def
+	[unit angle cos mul unit angle sin mul]
+    } for
+] graph
+
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Page: Chvatal 6
+
+save /cleanslate exch def
+
+initialize
+
+/unit pagewidth 2 div 2 3 div mul def
+
+[
+    [false true false true true true false false false false false false]
+    [true false true false false false true true false false false false]
+    [false true false true false false false false true true false false]
+    [true false true false false false false false false false true true]
+
+    [true false false false false false false false true true false true]
+    [true false false false false false true false true true false false]
+    [false true false false false true false false false false true true]
+    [false true false false false false false false true false true true]
+    [false false true false true true false true false false false false]
+    [false false true false true true false false false false true false]
+    [false false false true false false true true false true false false]
+    [false false false true true false true true false false false false]
+]
+[
+    [unit unit]
+    [unit neg unit]
+    [unit neg unit neg]
+    [unit unit neg]
+    [unit 2 div unit 4 div]
+    [unit 4 div unit 2 div]
+    [unit 4 div neg unit 2 div]
+    [unit 2 div neg unit 4 div]
+    [unit 2 div neg unit 4 div neg]
+    [unit 4 div neg unit 2 div neg]
+    [unit 4 div unit 2 div neg]
+    [unit 2 div unit 4 div neg]
+] graph
+
+showpage
+
+cleanslate restore
+
+%%PageTrailer
+%%Page: Bidiakis 7
+
+save /cleanslate exch def
+
+initialize
+
+/unit pagewidth 2 div 2 3 div mul def
+/n 12 def
+/baseangle 360 n div def
+
+[
+    [false true false false false false true false false false false true]
+    [true false true false false true false false false false false false]
+    [false true false true false false false false false false true false]
+    [false false true false true false false false false true false false]
+    [false false false true false true false false true false false false]
+    [false true false false true false true false false false false false]
+    [true false false false false true false true false false false false]
+    [false false false false false false true false true false false true]
+    [false false false false true false false true false true false false]
+    [false false false true false false false false true false true false]
+    [false false true false false false false false false true false true]
+    [true false false false false false false true false false true false]
+]
+[
     0 1 n 1 sub {
 	baseangle mul /angle exch def
 	[unit angle cos mul unit angle sin mul]
