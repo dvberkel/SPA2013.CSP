@@ -1,0 +1,7 @@
+var problem = {
+    variables : {
+    },
+
+    constraints : [
+    ]
+};
