@@ -10,11 +10,19 @@ var CSP = (function(undefined){
 
     var solve = function(problem, callback) {
 	var id = problem.id = generator.next();
-	worker.addEventListener("message", function(event){
+	var handler = function(event){
 	    if (event.data.id === id) {
-		callback.call(event, event.data.solution);
+		if (event.data.type === "solution") {
+		    callback.call(event, event.data.solution);
+		}
+		if (event.data.type === "finished") {
+		    worker.removeEventListener("message", handler);
+		}
+	    } else {
+		console.log("intermittent")
 	    }
-	});
+	};
+	worker.addEventListener("message", handler);
 
 	worker.postMessage(problem);
     }

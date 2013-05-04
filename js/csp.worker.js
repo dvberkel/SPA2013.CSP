@@ -39,11 +39,12 @@
 
 
 	    return function(maximums){
-		this.all = function(callback){
+		this.all = function(solutionCallback, finishCallback){
 		    var current = startIndicesFor(maximums);
 		    do {
-			callback.call(current);
-		    } while (current = next(maximums, current))
+			solutionCallback.call(current);
+		    } while (current = next(maximums, current));
+		    finishCallback.call({});
 		};
 	    };
 	})();
@@ -75,11 +76,11 @@
 
 	    return function(variables){
 		var names = namesOf(variables);
-		this.all = function(callback){
+		this.all = function(solutionCallback, finishCallback){
 		    var generator = new IndicesGenerator(maximumsFor(variables, names));
 		    generator.all(function(){
-			callback.call(createIndicesMap(names,this));
-		    });
+			solutionCallback.call(createIndicesMap(names,this));
+		    }, finishCallback);
 		};
 	    };
 	})();
@@ -94,12 +95,12 @@
 	    }
 
 	    return function(problem) {
-		this.all = function(callback){
+		this.all = function(solutionCallback, finishCallback){
 		    var generator = new IndicesMapGenerator(problem.variables);
 
 		    generator.all(function(){
-			callback.call(createCandidateFrom(problem, this));
-		    });
+			solutionCallback.call(createCandidateFrom(problem, this));
+		    }, finishCallback);
 		};
 	    };
 	})();
@@ -143,12 +144,12 @@
 	var Solver = function(problem){
 	    var candidates = candidatesFor(problem);
 	    var checker = constraintCheckerFor(problem);
-	    this.all = function(callback) {
+	    this.all = function(solutionCallback, finishCallback) {
 		candidates.all(function(){
 		    if (checker.check(this)) {
-			callback.call(this);
+			solutionCallback.call(this);
 		    }
-		});
+		}, finishCallback);
 	    }
 	}
 
@@ -159,7 +160,9 @@
 
     worker.addEventListener("message", function(event){
 	solverFor(event.data).all(function(){
-	    worker.postMessage({ id : event.data.id, solution : this });
+	    worker.postMessage({ type : "solution", id : event.data.id, solution : this });
+	}, function(){
+	    worker.postMessage({ type : "finished", id : event.data.id });
 	});
     });
 })(this);
