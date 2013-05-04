@@ -1,4 +1,4 @@
-var problem = {
+CSP.problem = {
     variables : {
     },
 

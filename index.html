@@ -35,6 +35,7 @@
     <script src="js/jquery.deck-toc.js"></script>
     <script src="js/jquery.snippits.js"></script>
     <script src="js/jquery.gallery.js"></script>
+    <script src="js/csp.js"></script>
     <script src="js/setup.js"></script>
   </head>
   <body class="deck-container">
@@ -57,7 +58,7 @@
 	      <em>Sudoku:</em> fill a 9×9 grid with digits so that
 	      each column, each row, and each of the nine 3×3
 	      sub-grids that compose the grid contains all of
-	      the digits from 1 to 9. 
+	      the digits from 1 to 9.
 	    </p>
 	    <p><cite>Wikipedia</cite></p>
 	  </blockquote>
@@ -99,8 +100,14 @@
 	  <text x="100" y="100" dx="5" dy="-5">v3</text>
 	</g>
       </svg>
-      <textarea id="vertex-coloring" data-snippit="vertex-coloring.js" name="vertex-coloring" class="code" mode="javascript" style="display: none;"></textarea>
+      <textarea id="vertex-coloring" data-snippit="vertex-coloring.js" name="vertex-coloring" class="code" mode="javascript" runnable="true" globals="CSP" style="display: none;"></textarea>
     </section>
+
+    <section class="slide">
+      <h3>Vertex Coloring</h3>
+      <textarea id="solving-vertex-coloring" data-snippit="solving-vertex-coloring.js" name="solving-vertex-coloring" class="code" mode="javascript" runnable="true" globals="CSP" style="display: none;"></textarea>
+    </section>
+
 
     <section class="slide">
       <h2>Describe Problems as CSP</h2>
