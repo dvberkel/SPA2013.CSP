@@ -18,8 +18,6 @@ var CSP = (function(undefined){
 		if (event.data.type === "finished") {
 		    worker.removeEventListener("message", handler);
 		}
-	    } else {
-		console.log("intermittent")
 	    }
 	};
 	worker.addEventListener("message", handler);
