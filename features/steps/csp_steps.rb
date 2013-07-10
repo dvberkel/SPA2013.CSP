@@ -17,8 +17,10 @@ Given(/^I have a variable '(\w+)' with domain \[(.*)\]$/) do |v, d|
   @problem.addVariable(variable)
 end
 
-Given(/^I have a constraint: (.*)$/) do |constraint|
-  pending # express the regexp above with the code you wish you had
+Given(/^I have a constraint: (.*)$/) do |c|
+  data = /(?<left>\w+)\s*(?<operator>\S*)\s*(?<right>\w+)/.match(c)
+  constraint = CSP.equal(data[:left], data[:right])
+  @problem.addConstraint(constraint)
 end
 
 When(/^I solve the problem$/) do
@@ -29,7 +31,8 @@ When(/^I solve the problem$/) do
 end
 
 Then(/^I expect solutions$/) do |table|
-  table.hashes.each do |expected_solution|
+  hashes = table.hashes
+  hashes.each do |expected_solution|
     expect(@solutions).to include(expected_solution)
   end
 end
