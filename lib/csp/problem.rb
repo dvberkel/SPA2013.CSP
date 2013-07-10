@@ -4,7 +4,7 @@ module CSP
   class Problem
     def initialize
       @variables = CSP::Variables.new
-      @constraints = []
+      @constraints = CSP::Constraints.new
     end
 
     def addVariable(variable)
@@ -17,7 +17,9 @@ module CSP
 
     def solve(&block)
       @variables.each do |candidate|
-        block.call(candidate)
+        if @constraints.satisfied_by?(candidate)
+          block.call(candidate)
+        end
       end
     end
   end
