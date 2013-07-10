@@ -7,8 +7,10 @@ Given(/^I have a CSP problem$/) do
   @problem = CSP.problem
 end
 
-Given(/^I have a variable '(\w+)' with domain \[(.*)\]$/) do |variable, domain|
-  pending # express the regexp above with the code you wish you had
+Given(/^I have a variable '(\w+)' with domain \[(.*)\]$/) do |v, d|
+  domain = d.split(/,\s*/)
+  variable = CSP.variable(v).withDomain(domain)
+  @problem.addVariable(variable)
 end
 
 Given(/^I have a constraint: (.*)$/) do |constraint|
