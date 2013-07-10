@@ -11,12 +11,13 @@ module CSP
     CSP::VariableBuilder.new(name)
   end
 
-  def self.equal(left, right)
-    CSP::Constraint::Equal.new(left, right)
-  end
-
-  def self.not_equal(left, right)
-    CSP::Constraint::Not_Equal.new(left, right)
+  def self.constraint(operator, left, right)
+    case operator
+    when "="
+      CSP::Constraint::Equal.new(left, right)
+    when "!="
+      CSP::Constraint::Not_Equal.new(left, right)
+    end
   end
 
   def self.valueOf(key)
