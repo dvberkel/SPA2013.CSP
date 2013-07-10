@@ -18,7 +18,7 @@ Given(/^I have a variable '(\w+)' with domain \[(.*)\]$/) do |v, d|
 end
 
 Given(/^I have a constraint: (.*)$/) do |c|
-  data = /(?<left>\w+)\s*(?<operator>\S*)\s*(?<right>\w+)/.match(c)
+  data = /(?<left>\w+)\s+(?<operator>!?=)\s+(?<right>.+)/.match(c)
   left = CSP.valueOf(data[:left])
   right = CSP.valueOf(data[:right])
   case data[:operator]

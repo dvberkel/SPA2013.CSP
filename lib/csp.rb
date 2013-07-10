@@ -20,6 +20,13 @@ module CSP
   end
 
   def self.valueOf(key)
-    Proc.new { |candidate| candidate[key] }
+    if key.include?('+')
+      data = /(?<key>\w+)\s*\+\s*(?<shift>\d+)/.match(key)
+      key = data[:key]
+      shift = data[:shift].to_i
+      Proc.new { |candidate| (candidate[key].to_i + shift).to_s }
+    else
+      Proc.new { |candidate| candidate[key] }
+    end
   end
 end
