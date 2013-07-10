@@ -35,4 +35,7 @@ Then(/^I expect solutions$/) do |table|
   hashes.each do |expected_solution|
     expect(@solutions).to include(expected_solution)
   end
+  @solutions.each do |proposed_solution|
+    expect(hashes).to include(proposed_solution)
+  end
 end
