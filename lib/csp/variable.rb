@@ -36,9 +36,36 @@ module CSP
     end
 
     def each(&block)
-      @variables[0].each do |assignment|
+      candidates(@variables).each do |assignment|
         block.call(assignment)
       end
+    end
+  end
+end
+
+def candidates(variables)
+  VariablesIterator.new(variables)
+end
+
+class VariablesIterator
+  def initialize(variables)
+    if (variables.size > 0)
+      @variable = variables[0]
+      @next = VariablesIterator.new(variables.slice(1, variables.size))
+    else
+      @variable = nil
+    end
+  end
+
+  def each(&block)
+    if @variable
+      @variable.each do |head|
+        @next.each do |tail|
+          block.call(head.merge(tail))
+        end
+      end
+    else
+      block.call(Hash.new)
     end
   end
 end
