@@ -18,4 +18,8 @@ module CSP
   def self.not_equal(left, right)
     CSP::Constraint::Not_Equal.new(left, right)
   end
+
+  def self.valueOf(key)
+    Proc.new { |candidate| candidate[key] }
+  end
 end

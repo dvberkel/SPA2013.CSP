@@ -8,7 +8,7 @@ module CSP
       end
 
       def satisfied_by?(candidate)
-        satisfied?(candidate[@left], candidate[@right])
+        satisfied?(@left.call(candidate), @right.call(candidate))
       end
     end
   end
