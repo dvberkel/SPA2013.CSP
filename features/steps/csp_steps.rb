@@ -1,6 +1,10 @@
 GEM_ROOT = File.expand_path("../../..", __FILE__)
 $:.unshift File.join(GEM_ROOT, "lib")
 
+require 'rubygems'
+require 'bundler/setup'
+require 'rspec/expectations'
+
 require 'csp'
 
 Given(/^I have a CSP problem$/) do
@@ -25,6 +29,7 @@ When(/^I solve the problem$/) do
 end
 
 Then(/^I expect solutions$/) do |table|
-  # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  table.hashes.each do |expected_solution|
+    expect(@solutions).to include(expected_solution)
+  end
 end
