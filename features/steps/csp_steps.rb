@@ -19,7 +19,12 @@ end
 
 Given(/^I have a constraint: (.*)$/) do |c|
   data = /(?<left>\w+)\s*(?<operator>\S*)\s*(?<right>\w+)/.match(c)
-  constraint = CSP.equal(data[:left], data[:right])
+  case data[:operator]
+  when "="
+    constraint = CSP.equal(data[:left], data[:right])
+  when "!="
+    constraint = CSP.not_equal(data[:left], data[:right])
+  end
   @problem.addConstraint(constraint)
 end
 

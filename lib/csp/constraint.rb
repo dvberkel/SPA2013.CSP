@@ -1,7 +1,6 @@
 module CSP
   module Constraint
     class Equal
-      attr_reader :left, :right
       def initialize(left, right)
         @left = left
         @right = right
@@ -9,6 +8,21 @@ module CSP
 
       def satisfied_by?(candidate)
         candidate[@left] == candidate[@right]
+      end
+    end
+  end
+end
+
+module CSP
+  module Constraint
+    class Not_Equal
+      def initialize(left, right)
+        @left = left
+        @right = right
+      end
+
+      def satisfied_by?(candidate)
+        candidate[@left] != candidate[@right]
       end
     end
   end
