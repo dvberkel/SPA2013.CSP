@@ -1,5 +1,10 @@
+GEM_ROOT = File.expand_path("../../..", __FILE__)
+$:.unshift File.join(GEM_ROOT, "lib")
+
+require 'csp'
+
 Given(/^I have a CSP problem$/) do
-  pending # express the regexp above with the code you wish you had
+  @problem = CSP.problem
 end
 
 Given(/^I have a variable '(\w+)' with domain \[(.*)\]$/) do |variable, domain|
