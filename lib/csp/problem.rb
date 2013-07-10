@@ -1,7 +1,9 @@
+require 'csp/variable'
+
 module CSP
   class Problem
     def initialize
-      @variables = []
+      @variables = CSP::Variables.new
     end
 
     def addVariable(variable)
@@ -9,6 +11,9 @@ module CSP
     end
 
     def solve(&block)
+      @variables.each do |candidate|
+        block.call(candidate)
+      end
     end
   end
 end
