@@ -18,7 +18,10 @@ Given(/^I have a constraint: (.*)$/) do |constraint|
 end
 
 When(/^I solve the problem$/) do
-  pending # express the regexp above with the code you wish you had
+  @solutions = []
+  @problem.solve do |solution|
+    @solutions << solution
+  end
 end
 
 Then(/^I expect solutions$/) do |table|

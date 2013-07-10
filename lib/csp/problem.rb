@@ -7,5 +7,8 @@ module CSP
     def addVariable(variable)
       @variables << variable
     end
+
+    def solve(&block)
+    end
   end
 end
